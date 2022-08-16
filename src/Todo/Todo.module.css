@@ -1,0 +1,32 @@
+.todo{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;  
+  width: 50%;
+  
+}
+.todoItem{
+background-color: bisque;
+padding-bottom: 50px;
+}
+.completeBtn{
+  font-size: 18px;
+  border: 3px solid hsl(0, 5%, 96%);
+    background: #7d1515;
+    border-radius: 8px;
+    height: 32px;
+    color: white;
+}
+.deleteBtn{
+  font-size: 18px;
+  border: 3px solid hsl(0, 5%, 96%);
+    background: #7d1515;
+    border-radius: 8px;
+    height: 32px;
+    color: white;
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
