@@ -25,12 +25,9 @@ const Form = (props) => {
         className={styles.formInput}
         onChange={inputValueHandler}
       />
-
       <button className={styles.formButton} type="submit">
-        <i className="fas fa-plus-square" /> Отправить
+   Отправить
       </button>
-
-
     </form>
   );
 };

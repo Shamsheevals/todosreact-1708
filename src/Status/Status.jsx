@@ -1,16 +1,29 @@
 
-const Status=(props)=>{
+const Status = (props) => {
   const statusHandler = (e) => {
     props.setStatus(e.target.value);
   };
-  return(
-      <ul  name="todos">
-  <li value="all">Все</li>
-  <li value="completed">Выполнено</li>
-  <li value="uncompleted">Не выполнено</li>
-</ul>
-  )
-}
+  const filterHandler = (value) => {
+    let arr = props.todos.filter((todo) => {
+      if (!todo.completed) {
+        props.counter++;
+      }
+      if (statusHandler === 'allItem') {
+        return true;
+      }
+      const checkedStatus = (statusHandler === 'chekedItem');
+      return todo.completed === checkedStatus;
+
+    });
+  };
+
+return (
+  <select onChange={statusHandler} name="todos">
+    <option value="all">Все</option>
+    <option value="completed">Выполнено</option>
+    <option value="uncompleted">Не выполнено</option>
+  </select>
+)}
 export default Status
 
 

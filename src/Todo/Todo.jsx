@@ -10,6 +10,7 @@ const Todo = ( props) => {
           return {
             ...item,
             completed: !item.completed,
+            
           };
         }
         return item;
@@ -22,9 +23,10 @@ const Todo = ( props) => {
         <button onClick={completeHandler} className={styles.completeBtn}>
       Сменить статус 
       </button>
-      <li className={`todoItem ${props.todo.completed ? "completed" : ""}`}>
+      <li className={props.todo.completed ? styles.completed : ""}>
       {props.value}
-      </li> <button onClick={deleteHandler} className={styles.deleteBtn}>
+      </li> 
+      <button onClick={deleteHandler} className={styles.deleteBtn}>
    Удалить
       </button>
     </div >

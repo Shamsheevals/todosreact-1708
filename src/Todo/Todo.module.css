@@ -4,12 +4,12 @@
   flex-direction: row;
   justify-content: space-between;  
   width: 50%;
-  
+ background-color: lightgray;
+border-radius: 30px;
+  margin-top: 20px;
 }
-.todoItem{
-background-color: bisque;
-padding-bottom: 50px;
-}
+
+
 .completeBtn{
   font-size: 18px;
   border: 3px solid hsl(0, 5%, 96%);

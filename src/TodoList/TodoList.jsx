@@ -1,10 +1,10 @@
 import Todo from "../Todo";
-
+import Status from "../Status/Status";
 const TodoList = (props) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {props.filterTodos.map((todo) => (
+        {props.todos.map((todo) => (
           <Todo
             key={todo.id}
             todo={todo}
