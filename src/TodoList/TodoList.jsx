@@ -1,10 +1,9 @@
 import Todo from "../Todo";
-import Status from "../Status/Status";
 const TodoList = (props) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {props.todos.map((todo) => (
+        {props.filterTodos.map((todo) => (
           <Todo
             key={todo.id}
             todo={todo}
@@ -17,5 +16,4 @@ const TodoList = (props) => {
     </div>
   );
 };
-
 export default TodoList;

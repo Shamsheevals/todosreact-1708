@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styles from "./Form.module.css";
-
 const Form = (props) => {
   const [inputValue, setInputValue] = useState("");
-
   const inputValueHandler = (e) => {
     setInputValue(e.target.value);
   };
@@ -14,8 +12,8 @@ const Form = (props) => {
       return;
     }
     props.onCreate(title);
+    setInputValue("");
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -26,10 +24,9 @@ const Form = (props) => {
         onChange={inputValueHandler}
       />
       <button className={styles.formButton} type="submit">
-   Отправить
+        Отправить
       </button>
     </form>
   );
 };
-
 export default Form;

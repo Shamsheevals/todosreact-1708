@@ -1,32 +1,73 @@
 .todo{
-  margin: 0 auto;
+  margin-left: 50px;
+  margin-right: 50px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;  
-  width: 50%;
+  justify-content: space-between;
  background-color: lightgray;
 border-radius: 30px;
   margin-top: 20px;
+  
 }
 
+li{
+  width: 80%;
+  word-wrap: break-word;
+}
 
 .completeBtn{
+ 
   font-size: 18px;
   border: 3px solid hsl(0, 5%, 96%);
     background: #7d1515;
     border-radius: 8px;
-    height: 32px;
     color: white;
 }
 .deleteBtn{
+ 
   font-size: 18px;
   border: 3px solid hsl(0, 5%, 96%);
     background: #7d1515;
     border-radius: 8px;
-    height: 32px;
+
     color: white;
 }
 .completed {
   text-decoration: line-through;
-  opacity: 0.5;
+  text-decoration-color: #7d1515;
+  opacity: 5;
+}
+@media(max-width:1300px){
+  li{
+    width: 50%;
+    word-wrap: break-word;
+  }
+
+}
+@media(max-width:600px){
+  .todo{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .completeBtn{
+ 
+    font-size: 16px;}
+
+.deleteBtn{
+ 
+  font-size: 16px;}
+
+}
+@media(max-width:400px){
+  .todo{
+    justify-content: center;
+    padding-right: 20px;
+  }
+  .completeBtn{
+ 
+    font-size: 14px;}
+
+.deleteBtn{
+ 
+  font-size: 14px;}
+
 }
