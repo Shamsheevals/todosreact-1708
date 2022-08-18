@@ -1,7 +1,7 @@
 import styles from "./Status.module.css";
 const Status = (props) => {
   const statusHandler = (e) => {
-    props.setStatus(e.target.value);
+    props.setFilter(e.target.value);
   };
   return (
     <select onChange={statusHandler} name="todos" className={styles.select}>

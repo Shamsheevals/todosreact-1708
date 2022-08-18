@@ -9,4 +9,5 @@ class LocalStorage {
     localStorage.setItem(this.name, JSON.stringify(data));
   }
 }
+
 export default LocalStorage;

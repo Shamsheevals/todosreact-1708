@@ -7,9 +7,9 @@ const TodoList = (props) => {
           <Todo
             key={todo.id}
             todo={todo}
-            todos={props.todos}
-            setTodos={props.setTodos}
             value={todo.value}
+            deleteHandler={props.deleteHandler}
+            completeHandler={props.completeHandler}
           />
         ))}
       </ul>
