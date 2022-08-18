@@ -44,9 +44,14 @@ li{
 
 }
 @media(max-width:600px){
+  li{
+    width: 30%;
+    word-wrap: break-word;
+  }
+
   .todo{
-    margin-left: 20px;
-    margin-right: 20px;
+   margin: 0 auto;
+   padding: 0 auto;
   }
   .completeBtn{
  

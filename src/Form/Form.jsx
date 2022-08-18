@@ -6,6 +6,8 @@ const Form = (props) => {
     setInputValue(e.target.value);
   };
   const handleSubmit = (ev) => {
+
+e.preventDefault();
     ev.preventDefault();
     const title = inputValue.trim();
     if (!title) {

@@ -1,14 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import Form from "./Form";
 import TodoList from "./TodoList";
 import "./index.css";
 import "./App.css";
 import Status from "./Status";
+import LocalStorage from "./LocalStorage/LocalStorage"
 
+
+const TODOS_LOCALSTORAGE_KEY = new LocalStorage('todos');
+const STATUS_LOCALSTORAGE_KEY = new LocalStorage('filter');
 const App = () => {
-  const [todos, setTodos] = useState([]);
-  const [status, setStatus] = useState("all");
-  const [filterTodos, setFilterTodos] = useState([]);
+  const [todos, setTodos] =  useState(TODOS_LOCALSTORAGE_KEY.get() || []);
+  const [status, setStatus] = useState(STATUS_LOCALSTORAGE_KEY.get() || 'all');
+
+
+
+
+ useEffect(() => {
+    TODOS_LOCALSTORAGE_KEY.set(todos)
+  }, [todos]);
+
+useEffect(() => {
+    STATUS_LOCALSTORAGE_KEY.set(status);
+  }, [status]);
   const createTodo = (title) => {
     const todo = {
       value: title,
@@ -17,7 +31,8 @@ const App = () => {
     };
     setTodos([...todos, todo]);
   };
-  useEffect(() => {
+
+  const filteredArray = useMemo(()=> {
     const arr = todos.filter((todo) => {
       if (status === "all") {
         return todo;
@@ -27,7 +42,7 @@ const App = () => {
         return !todo.completed;
       }
     });
-    setFilterTodos(arr);
+    return arr;
   }, [status, todos]);
 
   return (
@@ -36,9 +51,9 @@ const App = () => {
         <h1>Todos</h1>
       </header>
       <Form onCreate={createTodo} />
-      <TodoList todos={todos} setTodos={setTodos} filterTodos={filterTodos} />
+      <TodoList todos={todos} setTodos={setTodos} filteredArray={filteredArray} />
       <Status setStatus={setStatus} />
-     <div className="counter">Всего:{filterTodos.length}</div>
+     <div className="counter">Всего:{filteredArray.length}</div>
     </div> 
   );
 };
