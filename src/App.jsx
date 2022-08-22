@@ -1,23 +1,25 @@
 import { useEffect, useState, useMemo } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addTodoAction } from "./store/root-reducer";
+import { TODOS_LOCALSTORAGE_KEY } from "./components/Constants";
+import {FILTER_LOCALSTORAGE_KEY}from "./components/Constants";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import Status from "./components/Status";
-import LocalStorage from "./utils/LocalStorage"
-
 import "./index.css";
 import "./App.css";
 
-const TODOS_LOCALSTORAGE_KEY = new LocalStorage('todos');
-const FILTER_LOCALSTORAGE_KEY = new LocalStorage('filter');
-
 const App = () => {
-  const [todos, setTodos] = useState(TODOS_LOCALSTORAGE_KEY.get() || []);
-  const [filter, setFilter] = useState(FILTER_LOCALSTORAGE_KEY.get() || 'all');
-  useEffect(() => {
-    TODOS_LOCALSTORAGE_KEY.set(todos)
-  }, [todos]);
+   const dispatch = useDispatch();
+  const [filter, setFilter] = useState(FILTER_LOCALSTORAGE_KEY.get()|| "all");
+  const {todosArr} = useSelector((state) => state.todosArr);
+  
 
+
+
+  useEffect(() => {
+    TODOS_LOCALSTORAGE_KEY.set(todosArr);
+  }, [todosArr]);
   useEffect(() => {
     FILTER_LOCALSTORAGE_KEY.set(filter);
   }, [filter]);
@@ -28,11 +30,11 @@ const App = () => {
       completed: false,
       id: Math.random() * 1000,
     };
-    setTodos([...todos, todo]);
+    dispatch(addTodoAction(todo));
   };
 
   const filteredArray = useMemo(() => {
-    const arr = todos.filter((todo) => {
+    const arr = todosArr.filter((todo) => {
       if (filter === "all") {
         return todo;
       } else if (filter === "completed") {
@@ -42,28 +44,23 @@ const App = () => {
       }
     });
     return arr;
-  }, [filter, todos]);
-const counter=!todo.completed;
+  }, [filter, todosArr]);
+
+
   return (
     <div className="App">
       <header>
         <h1>Todos</h1>
       </header>
-
-      <Form onCreate={createTodo} />
-
-      <TodoList
-        todos={todos}
-        setTodos={setTodos}
-        filteredArray={filteredArray}
+      <Form onCreate={createTodo} 
       />
-
+      <TodoList
+        filteredArray={filteredArray}
+        todosArr={todosArr}
+      />
       <Status filter={filter} setFilter={setFilter} />
-
       <div className="counter">
-
-
-        {` ${filteredArray.length}`}
+        Вcего:{filteredArray.length}
       </div>
     </div>
   );

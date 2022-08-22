@@ -1,13 +1,19 @@
 import styles from "./Todo.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteTodoAction } from "../../store/root-reducer";
+import {completeTodoAction} from "../../store/root-reducer";
 
 const Todo = (props) => {
+  const dispatch = useDispatch();
+  const { todosArr } = useSelector((state) => state);
+
   const deleteHandler = () => {
-    props.setTodos(props.todos.filter((el) => el.id !== props.todo.id));
+  todosArr.filter((el) => el.id !== props.todo.id);
+    dispatch(deleteTodoAction(props.todo))
   };
 
   const completeHandler = () => {
-    props.setTodos(
-      props.todos.map((item) => {
+   todosArr.map((item) => {
         if (item.id === props.todo.id) {
           return {
             ...item,
@@ -15,8 +21,9 @@ const Todo = (props) => {
           };
         }
         return item;
-      })
-    );
+      });
+    dispatch(completeTodoAction(props.todo))
+
   };
 
   return (

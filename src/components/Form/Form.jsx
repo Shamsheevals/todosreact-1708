@@ -1,10 +1,11 @@
-
+import {useSelector } from "react-redux";
 import { useState } from "react";
+
 import styles from "./Form.module.css";
 
 const Form = (props) => {
   const [inputValue, setInputValue] = useState("");
-
+const { todosArr } = useSelector((state) => state.todosArr);
   const inputValueHandler = (e) => {
     setInputValue(e.target.value);
   };
