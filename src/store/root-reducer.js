@@ -2,6 +2,7 @@ import { TODOS_LOCALSTORAGE_KEY } from "../components/Constants";
 
  const initialState = {
   todosArr: TODOS_LOCALSTORAGE_KEY.get()|| [],
+filter:""
 };
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO="DELETE_TODO"
@@ -34,6 +35,8 @@ export function rootReducer(state = initialState, action) {
             return item;
           })]
         }
+        default:
+          return state
   }
 }
 export const deleteTodoAction = (payload) => {

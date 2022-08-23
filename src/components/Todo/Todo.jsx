@@ -8,20 +8,10 @@ const Todo = (props) => {
   const { todosArr } = useSelector((state) => state);
 
   const deleteHandler = () => {
-  todosArr.filter((el) => el.id !== props.todo.id);
     dispatch(deleteTodoAction(props.todo))
   };
 
   const completeHandler = () => {
-   todosArr.map((item) => {
-        if (item.id === props.todo.id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-        return item;
-      });
     dispatch(completeTodoAction(props.todo))
 
   };

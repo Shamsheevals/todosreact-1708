@@ -1,29 +1,19 @@
-import { useEffect, useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodoAction } from "./store/root-reducer";
-import { TODOS_LOCALSTORAGE_KEY } from "./components/Constants";
+import { useState, useMemo } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import rootReducer, { addTodoAction } from "./store/root-reducer";
 import {FILTER_LOCALSTORAGE_KEY}from "./components/Constants";
+import { filterTodoAction } from "./store/root-reducer";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import Status from "./components/Status";
 import "./index.css";
-import "./App.css";
+import "./App.css"; 
 
 const App = () => {
    const dispatch = useDispatch();
   const [filter, setFilter] = useState(FILTER_LOCALSTORAGE_KEY.get()|| "all");
-  const {todosArr} = useSelector((state) => state.todosArr);
+  const todosArr = useSelector(state => state.todosArr)
   
-
-
-
-  useEffect(() => {
-    TODOS_LOCALSTORAGE_KEY.set(todosArr);
-  }, [todosArr]);
-  useEffect(() => {
-    FILTER_LOCALSTORAGE_KEY.set(filter);
-  }, [filter]);
-
   const createTodo = (title) => {
     const todo = {
       value: title,
@@ -32,7 +22,7 @@ const App = () => {
     };
     dispatch(addTodoAction(todo));
   };
-
+  
   const filteredArray = useMemo(() => {
     const arr = todosArr.filter((todo) => {
       if (filter === "all") {
@@ -44,8 +34,8 @@ const App = () => {
       }
     });
     return arr;
-  }, [filter, todosArr]);
-
+  
+  },  [filter, todosArr]);
 
   return (
     <div className="App">
