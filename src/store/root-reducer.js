@@ -1,8 +1,9 @@
+import { FILTER_LOCALSTORAGE_KEY } from "../components/Constants";
 import { TODOS_LOCALSTORAGE_KEY } from "../components/Constants";
 
- const initialState = {
+ export const initialState = {
   todosArr: TODOS_LOCALSTORAGE_KEY.get()|| [],
-filter:""
+filterArr:FILTER_LOCALSTORAGE_KEY.get()|| "all"
 };
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO="DELETE_TODO"
@@ -58,6 +59,7 @@ export const completeTodoAction = (payload) => {
     payload,
   };
 };
+
 
 
 

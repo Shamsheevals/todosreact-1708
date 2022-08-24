@@ -1,9 +1,15 @@
 import Todo from "../Todo";
+import { useSelector } from "react-redux";
+import { SelectorTodos } from "../../store/reselect";
+
+
 const TodoList = (props) => {
+  const todosList = useSelector(SelectorTodos);
+
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {props.filteredArray.map((todo) => (
+        {todosList.map((todo) => (
           <Todo
             key={todo.id}
             todo={todo}

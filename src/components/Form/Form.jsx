@@ -6,6 +6,7 @@ import styles from "./Form.module.css";
 const Form = (props) => {
   const [inputValue, setInputValue] = useState("");
 const { todosArr } = useSelector((state) => state.todosArr);
+
   const inputValueHandler = (e) => {
     setInputValue(e.target.value);
   };
@@ -28,7 +29,6 @@ const { todosArr } = useSelector((state) => state.todosArr);
         className={styles.formInput}
         onChange={inputValueHandler}
       />
-
       <button className={styles.formButton} type="submit">
         Отправить
       </button>

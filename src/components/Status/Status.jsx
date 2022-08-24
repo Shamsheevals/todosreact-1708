@@ -1,8 +1,13 @@
 import styles from "./Status.module.css";
+import { useSelector } from "react-redux";
+import { SelectorTodos } from "../../store/reselect";
 
 const Status = (props) => {
+  
+  const todosList = useSelector(SelectorTodos);
+
   const statusHandler = (e) => {
-    props.setFilter(e.target.value);
+    todosList(e.target.value) ;
   };
 
   return (
